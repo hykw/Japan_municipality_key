@@ -1,4 +1,4 @@
-# How to update the `municipality.tsv` file.
+# How to update the resource tsv files?
 
 ## env
 As a conversion script imports xlrd package, install it with pip. Recommends virtualenv:
@@ -7,6 +7,8 @@ As a conversion script imports xlrd package, install it with pip. Recommends vir
 $ mkvirtualenv --python=`which python` --no-site-packages municipality
 $ pip install xlrd
 ```
+
+## build the files
 
 - Download the municipality code at MIC(http://www.soumu.go.jp/denshijiti/code.html)
 
