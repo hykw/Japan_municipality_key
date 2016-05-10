@@ -17,5 +17,5 @@ $ wget http://www.soumu.go.jp/main_content/000318342.xls
 - update the source file with the script like following:
 
 ```
-$ python build_source.py 000318342.xls > municipality.tsv
+$ python build_source.py 000318342.xls
 ```
