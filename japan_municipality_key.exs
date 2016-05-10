@@ -1,5 +1,13 @@
 defmodule JpMunicipality do
 
+  defmodule Cities do
+    defstruct code: nil, name: nil
+    @type t :: %__MODULE__{
+      code: String.t, name: String.t
+    }
+  end
+
+
   file_pref = Path.join([__DIR__, "resources", "prefs.tsv"])
   file_cities = Path.join([__DIR__, "resources", "cities.tsv"])
 
@@ -44,7 +52,7 @@ defmodule JpMunicipality do
         Enum.map(cities_array, fn(x) ->
           [code, _pref, city] = x
                                 |> String.split(",")
-          %{ code: code, name: city}
+          %JpMunicipality.Cities{ code: code, name: city}
         end)
     end
   end
