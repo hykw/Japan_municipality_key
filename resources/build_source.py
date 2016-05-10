@@ -59,13 +59,10 @@ def write_pref(code, pref):
         f.write(tsv.encode("utf-8"))
 
 
-
-def write_cities(code, pref, city):
-    tsv = "\t".join( (code, pref, city) ) + "\n"
-
+def write_cities(cities):
+    tsv = "\t".join(cities) + "\n"
     with open(TSV_CITIES, 'a') as f:
         f.write(tsv.encode("utf-8"))
-
 
 ##################################################
 
@@ -75,6 +72,8 @@ if len(sys.argv) != 2:
 
 delete_resource_files()
 
+before_pref = ""
+cities = []
 sheet = get_sheet_obj(sys.argv[1])
 for row in range(1, sheet.nrows):
     code, pref, city = split_cells(sheet, row)
@@ -82,4 +81,14 @@ for row in range(1, sheet.nrows):
     if city == "":
         write_pref(code, pref)
     else:
-        write_cities(code, pref, city)
+        if before_pref == pref:
+            cities += [",".join( (code, pref, city) )]
+        else:
+            before_pref = pref
+            if cities != []:
+                write_cities(cities)
+                cities = []
+
+            cities += [",".join( (code, pref, city) )]
+
+write_cities(cities)
