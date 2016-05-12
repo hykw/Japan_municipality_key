@@ -1,0 +1,1 @@
+sidebarNodes={"exceptions":[],"extras":[{"id":"api-reference","title":"API Reference","headers":[]}],"modules":[{"id":"JapanMunicipalityCode","title":"JapanMunicipalityCode","functions":[{"id":"cities/1","anchor":"cities/1"},{"id":"pref/1","anchor":"pref/1"}]},{"id":"JapanMunicipalityCode.Cities","title":"JapanMunicipalityCode.Cities"}],"protocols":[]}
