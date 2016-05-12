@@ -3,7 +3,7 @@ defmodule JapanMunicipalityCode.Mixfile do
 
   def project do
     [app: :japan_municipality_code,
-     version: "1.0.0",
+     version: "1.0.1",
      elixir: "~> 1.2",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
@@ -46,7 +46,7 @@ defmodule JapanMunicipalityCode.Mixfile do
 
   defp package do
     [
-      files: ["lib", "mix.exs", "README.md"],
+      files: ["lib", "priv", "mix.exs", "README.md"],
       maintainers: ["Hitoshi Hayakawa"],
       licenses: ["MIT"],
       links: %{"GitHub" => "https://github.com/hykw/japan_municipality_key"}
