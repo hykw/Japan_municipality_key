@@ -3,7 +3,6 @@ defmodule JapanMunicipalityCode do
   Elixir Library for Japan municipality key converting
   """
 
-
   defmodule Cities do
     @moduledoc """
     the struct for cities info
@@ -19,6 +18,8 @@ defmodule JapanMunicipalityCode do
   file_pref = Path.join([__DIR__, "..",  "priv", "prefs.tsv"])
   file_cities = Path.join([__DIR__, "..", "priv", "cities.tsv"])
 
+  @external_resource file_pref
+  @external_resource file_cities
 
   ### pref
   for line <- File.stream!(file_pref, [], :line) do
