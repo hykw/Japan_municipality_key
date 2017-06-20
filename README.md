@@ -9,7 +9,7 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
   * Add japan_municipality_code to your list of dependencies in `mix.exs`:
 
         def deps do
-          [{:japan_municipality_code, "~> 1.0.1"}]
+          [{:japan_municipality_code, "~> 1.1.0"}]
         end
 
 ## Usage
