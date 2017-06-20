@@ -4,7 +4,7 @@ from __future__ import (division, print_function, absolute_import, unicode_liter
 
 ##################################################
 
-SHEET_NAME = "H26.4.5現在の団体"
+SHEET_NAME = "H28.10.10現在の団体"
 
 TSV_PREF = "prefs.tsv"
 TSV_CITIES = "cities.tsv"
