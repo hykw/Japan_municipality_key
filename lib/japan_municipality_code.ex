@@ -9,13 +9,14 @@ defmodule JapanMunicipalityCode do
     """
 
     defstruct code: nil, name: nil
+
     @type t :: %__MODULE__{
-      code: String.t, name: String.t
-    }
+            code: String.t(),
+            name: String.t()
+          }
   end
 
-
-  file_pref = Path.join([__DIR__, "..",  "priv", "prefs.tsv"])
+  file_pref = Path.join([__DIR__, "..", "priv", "prefs.tsv"])
   file_cities = Path.join([__DIR__, "..", "priv", "cities.tsv"])
 
   @external_resource file_pref
@@ -23,16 +24,17 @@ defmodule JapanMunicipalityCode do
 
   ### pref
   for line <- File.stream!(file_pref, [], :line) do
-    [pref | tail] = line
-                          |> String.strip()
-                          |> String.split("\t")
+    [pref | tail] =
+      line
+      |> String.strip()
+      |> String.split("\t")
 
-    [pref_code | _ ] = tail
+    [pref_code | _] = tail
 
-    @spec pref(String.t) :: String.t
+    @spec pref(String.t()) :: String.t()
     def pref(unquote(pref)), do: unquote(pref_code)
 
-    @spec pref(integer) :: String.t
+    @spec pref(integer) :: String.t()
     def pref(unquote(String.to_integer(pref_code))), do: unquote(pref)
   end
 
@@ -60,20 +62,19 @@ defmodule JapanMunicipalityCode do
   @spec pref(any) :: nil
   def pref(_), do: nil
 
-
   ### cities
   for line <- File.stream!(file_cities, [], :line) do
     pref_code = String.slice(line, 0, 2)
 
-    cities = line
-              |> String.strip()
-              |> String.split("\t")
+    cities =
+      line
+      |> String.strip()
+      |> String.split("\t")
 
     defp cities_array(unquote(String.to_integer(pref_code))), do: unquote(cities)
   end
 
   defp cities_array(_), do: nil
-
 
   @doc ~S"""
   Gets the cities with pref code or pref name.
@@ -122,25 +123,30 @@ defmodule JapanMunicipalityCode do
     cities_array = cities_array(pref_code)
 
     case cities_array do
-      nil -> nil
+      nil ->
+        nil
+
       _ ->
-        Enum.map(cities_array, fn(x) ->
-          [code, _pref, city] = x
-                                |> String.split(",")
-          %JapanMunicipalityCode.Cities{ code: code, name: city}
+        Enum.map(cities_array, fn x ->
+          [code, _pref, city] =
+            x
+            |> String.split(",")
+
+          %JapanMunicipalityCode.Cities{code: code, name: city}
         end)
     end
   end
 
-  @spec cities(String.t) :: any
+  @spec cities(String.t()) :: any
   def cities(pref) do
     pref_code = pref(pref)
 
     case pref_code do
-      nil -> nil
+      nil ->
+        nil
+
       _ ->
         cities(String.to_integer(pref_code))
     end
   end
 end
-

@@ -2,16 +2,18 @@ defmodule JapanMunicipalityCode.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :japan_municipality_code,
-     version: "1.1.0",
-     elixir: "~> 1.2",
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     description: description,
-     package: package,
-     source_url: "https://github.com/hykw/japan_municipality_key",
-     homepage_url: "https://github.com/hykw/japan_municipality_key",
-     deps: deps]
+    [
+      app: :japan_municipality_code,
+      version: "1.1.1",
+      elixir: "~> 1.2",
+      build_embedded: Mix.env() == :prod,
+      start_permanent: Mix.env() == :prod,
+      description: description(),
+      package: package(),
+      source_url: "https://github.com/hykw/japan_municipality_key",
+      homepage_url: "https://github.com/hykw/japan_municipality_key",
+      deps: deps()
+    ]
   end
 
   # Configuration for the OTP application
@@ -30,7 +32,7 @@ defmodule JapanMunicipalityCode.Mixfile do
   #   {:mydep, git: "https://github.com/elixir-lang/mydep.git", tag: "0.1.0"}
   #
   # Type "mix help deps" for more examples and options
-  defp deps do
+  defp deps() do
     [
       {:ex_doc, "~> 0.11", only: :dev},
       {:earmark, "~> 0.1", only: :dev},
@@ -38,13 +40,13 @@ defmodule JapanMunicipalityCode.Mixfile do
     ]
   end
 
-  defp description do
+  defp description() do
     """
     Elixir Library for Japan municipality key converting
     """
   end
 
-  defp package do
+  defp package() do
     [
       files: ["lib", "priv", "mix.exs", "README.md"],
       maintainers: ["Hitoshi Hayakawa"],
@@ -52,5 +54,4 @@ defmodule JapanMunicipalityCode.Mixfile do
       links: %{"GitHub" => "https://github.com/hykw/japan_municipality_key"}
     ]
   end
-
 end
